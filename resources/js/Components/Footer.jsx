@@ -1,6 +1,6 @@
-import { useState, useRef, useMemo } from "react";
+import { useMemo } from "react";
 
-export default function Footer(props){
+export default function Footer(){
 
     const currentYear = useMemo(() => (new Date().getFullYear()));
 
