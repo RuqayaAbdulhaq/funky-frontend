@@ -2,9 +2,9 @@ import BlogCard from "@/Components/BlogCard";
 
 export default function Blogs(props){
     return(
-        <div className="flex-col align-center flex gap-[20px]">
-            <h1>Recent Blogs</h1>
-            <div className="flex gap-[20px]">
+        <div className="flex-col items-center flex gap-[20px]">
+            <h1 className="text-gray-500 font-light text-[28px]">Recent Blogs</h1>
+            <div className="flex flex-col lg:flex-row gap-[20px]">
                 <BlogCard date={"14 Jul 2024"} imgSrc={"/images/lantern.jpg"} 
                 title={"Japanese Lantern"} 
                 description={"Drawn using html canvas"}/>
