@@ -1,9 +1,11 @@
+import Logo2 from "./Logo3";
+
 export default function Navbar(props) {
     return (
         <header className="flex flex-wrap justify-between items-center py-4">
-            <div className="w-fit flex justify-between items-center bg-primary">
+            <div className="w-fit flex justify-between items-center">
                 <a href="#" className="text-xl text-white">
-                    F.F LOGO
+                    <Logo2/>
                 </a>
             </div>
 
