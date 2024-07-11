@@ -8,10 +8,10 @@ export default function Blogs(props){
                 <BlogCard date={"14 Jul 2024"} imgSrc={"/images/lantern.jpg"} 
                 title={"Japanese Lantern"} 
                 description={"Drawn using html canvas"}/>
-                <BlogCard date={"14 Jul 2024"} imgSrc={"https://img.freepik.com/free-vector/car-street_18591-51124.jpg?t=st=1720388086~exp=1720391686~hmac=80a4f5d21f308f9a7d2bb472cce9e8187ddec736424bc33d93d766dc1d2b45cb&w=1380"} 
+                <BlogCard date={"14 Jul 2024"} imgSrc={"https://cdn.pixabay.com/photo/2024/01/22/00/23/ai-generated-8524230_960_720.jpg"} 
                 title={"Animating Car Loader"} 
                 description={"Creating a car going on the road animation"}/>
-                <BlogCard date={"14 Jul 2024"} imgSrc={"https://img.freepik.com/free-vector/realistic-horror-bloody-text-effect_52683-136698.jpg?t=st=1720388515~exp=1720392115~hmac=b365d7e28f91dc0d3340100e6c5fcaf136c9c92e16d64ea4cf4841b1d2990b2f&w=1380"} 
+                <BlogCard date={"14 Jul 2024"} imgSrc={"https://th.bing.com/th/id/R.fc9dc254e83c5f3d1fd00aa041014e18?rik=BQJUC%2fMf14J%2b9A&riu=http%3a%2f%2fwww.quotemaster.org%2fimages%2f53%2f5385e584c4499cb8b3bf28c39b321434.jpg&ehk=%2fr1GGg59Py3szrfDUYPU%2fp2TgvJ0XZJxffZ7nRhDnKM%3d&risl=&pid=ImgRaw&r=0"} 
                 title={"Blood Effect"} 
                 description={"as a form vaidation"}/>
             </div>

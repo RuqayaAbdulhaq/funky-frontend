@@ -19,7 +19,7 @@ const cardsInfoArray = [
 
 const CardElement = (props) => {
     return(
-        <div className={`flex flex-col gap-[50px] md:flex-row justify-between align-center ${props.className}`}>
+        <div className={`flex flex-col gap-[50px] md:flex-row justify-around align-center ${props.className}`}>
             <p className="flex items-center justify-center md:whitespace-pre-line font-medium text-[24px] md:text-[36px] lg:text-[42px] text-gray-500">
                 {props.text}
             </p>
