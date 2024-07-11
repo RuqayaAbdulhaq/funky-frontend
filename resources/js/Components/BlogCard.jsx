@@ -2,7 +2,7 @@ export default function BlogCard(props) {
     return (
         <div
             style={{ backgroundImage: `url(${props.imgSrc})` }}
-            class={`shadow bg-white relative rounded-md w-[400px] h-[350px] bg-center bg-cover bg-no-repeat cursor-pointer`}
+            class={`shadow bg-white relative rounded-md w-[350px] h-[300px] bg-center bg-cover bg-no-repeat cursor-pointer`}
         >
             <div class="absolute w-full h-full inset-0 bg-[#44585c] bg-opacity-20"></div>
             <div class="absolute top-0 start-0 p-2 ">
