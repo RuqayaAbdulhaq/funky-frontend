@@ -26,6 +26,10 @@ Route::get('/blogs', function () {
     return Inertia::render('Blogs');
 });
 
+Route::get('/blog/{id}', function () {
+    return Inertia::render('BlogDetails');
+});
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
