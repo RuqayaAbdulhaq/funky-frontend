@@ -31,7 +31,11 @@ Route::get('/blog/{id}', function () {
 });
 
 Route::get('/admin/blogs', function () {
-    return Inertia::render('AdminBlogs');
+    return Inertia::render('admin/Blogs');
+});
+
+Route::get('/admin/create-blog', function () {
+    return Inertia::render('admin/CreateBlog');
 });
 
 Route::middleware('auth')->group(function () {
