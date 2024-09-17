@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
-    background-color: #FAFAFA;
+body {
+    background-color: #fafafa;
+}
+
+pre {
+    @apply bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto;
+    font-family: "Fira Code", monospace;
+}
+
+code {
+    @apply bg-gray-900 text-gray-200 px-2 py-1 rounded-md;
+    font-family: "Fira Code", monospace;
 }
