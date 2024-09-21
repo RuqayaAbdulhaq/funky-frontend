@@ -30,5 +30,13 @@ export default {
         },
     },
 
-    plugins: [forms],
+    plugins: [forms, 
+        function({ addBase }) {
+            addBase({
+              'ul': { listStyleType: 'disc', paddingLeft: '1.25rem' },
+              'ol': { listStyleType: 'decimal', paddingLeft: '1.25rem' },
+              'li': { marginBottom: '0.5rem' },
+            });
+          }
+    ],
 };

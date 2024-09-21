@@ -6,8 +6,11 @@ import { Image } from "@tiptap/extension-image";
 import { Link } from "@tiptap/extension-link";
 import { Color } from "@tiptap/extension-color";
 import TextStyle from "@tiptap/extension-text-style";
-import TextAlign from '@tiptap/extension-text-align'
+import TextAlign from '@tiptap/extension-text-align';
+import Text from '@tiptap/extension-text';
 import ListItem from "@tiptap/extension-list-item";
+import Underline from '@tiptap/extension-underline';
+import BulletList from '@tiptap/extension-bullet-list';
 import { all, createLowlight } from "lowlight";
 import css from "highlight.js/lib/languages/css";
 import js from "highlight.js/lib/languages/javascript";
@@ -33,7 +36,13 @@ const TiptapEditor = () => {
             Image,
             Link,
             TextStyle,
-            TextAlign,
+            TextAlign.configure({
+                types: ['heading', 'paragraph'],
+            }),
+            Underline,
+            Text,
+            BulletList,
+            ListItem,
             Color.configure({ types: [TextStyle.name, ListItem.name] }),
         ],
         content: "<p>Start writing...</p>",
@@ -95,75 +104,90 @@ const TiptapEditor = () => {
 
             <BubbleMenu
                 editor={editor}
-                className="flex gap-2 p-2 bg-white border border-gray-200 rounded shadow-lg"
+                className="flex flex-col gap-2 p-2 bg-white border border-gray-200 rounded shadow-lg"
             >
-                <button
-                    onClick={() => editor.commands.toggleBold()}
-                    className="px-3 py-2 text-sm bg-blue-500 text-white rounded hover:bg-blue-600"
-                >
-                    Bold
-                </button>
-                <button
-                    onClick={() => editor.commands.toggleItalic()}
-                    className="px-3 py-2 text-sm bg-blue-500 text-white rounded hover:bg-blue-600"
-                >
-                    Italic
-                </button>
-                <button
-                    onClick={() => editor.commands.toggleUnderline()}
-                    className="px-3 py-2 text-sm bg-blue-500 text-white rounded hover:bg-blue-600"
-                >
-                    Underline
-                </button>
-                <input
-                    type="color"
-                    value={color}
-                    onChange={(e) => {
-                        setColor(e.target.value);
-                        changeTextColor(e.target.value);
-                    }}
-                    className="p-1 h-10 w-14 block bg-white border border-gray-200 cursor-pointer rounded-lg disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700"
-                />
-                <button
-                    onClick={() =>
-                        editor.chain().focus().setTextAlign("left").run()
-                    }
-                    className={
-                        "px-3 py-2 text-sm bg-blue-500 text-white rounded hover:bg-blue-600"
-                    }
-                >
-                    Left
-                </button>
-                <button
-                    onClick={() =>
-                        editor.chain().focus().setTextAlign("center").run()
-                    }
-                    className={
-                        "px-3 py-2 text-sm bg-blue-500 text-white rounded hover:bg-blue-600"
-                    }
-                >
-                    Center
-                </button>
-                <button
-                    onClick={() =>
-                        editor.chain().focus().setTextAlign("right").run()
-                    }
-                    className={
-                        "px-3 py-2 text-sm bg-blue-500 text-white rounded hover:bg-blue-600"
-                    }
-                >
-                    Right
-                </button>
-                <button
-                    onClick={() =>
-                        editor.chain().focus().setTextAlign("justify").run()
-                    }
-                    className={
-                        "px-3 py-2 text-sm bg-blue-500 text-white rounded hover:bg-blue-600"
-                    }
-                >
-                    Justify
-                </button>
+                <div className="flex gap-2">
+                    <button
+                        onClick={() => editor.commands.toggleBold()}
+                        className="px-3 py-2 text-sm bg-blue-500 text-white rounded hover:bg-blue-600"
+                    >
+                        Bold
+                    </button>
+                    <button
+                        onClick={() => editor.commands.toggleItalic()}
+                        className="px-3 py-2 text-sm bg-blue-500 text-white rounded hover:bg-blue-600"
+                    >
+                        Italic
+                    </button>
+                    <button
+                        onClick={() => editor.chain().focus().toggleBulletList().run()}
+                        className={`px-3 py-2 text-sm ${editor.isActive('bulletList') ? "bg-sky-800 hover:bg-blue-600 " : "bg-blue-500"}  text-white rounded `}
+                    >
+                        Bullet list
+                    </button>
+                    <button
+                        onClick={() => editor.chain().focus().toggleUnderline().run()}
+                        className={`px-3 py-2 text-sm ${editor.isActive('underline') ? "bg-sky-800 hover:bg-blue-600 " : "bg-blue-500"}  text-white rounded `}
+                    >
+                        Underline
+                    </button>
+                </div>
+                
+                <div className="flex gap-2">
+                    <button
+                        onClick={() =>
+                            editor.chain().focus().setTextAlign("left").run()
+                        }
+                        className={
+                            "px-3 py-2 text-sm bg-blue-500 text-white rounded hover:bg-blue-600"
+                        }
+                    >
+                        Left
+                    </button>
+                    <button
+                        onClick={() =>
+                            editor.chain().focus().setTextAlign("center").run()
+                        }
+                        className={
+                            "px-3 py-2 text-sm bg-blue-500 text-white rounded hover:bg-blue-600"
+                        }
+                    >
+                        Center
+                    </button>
+                    <button
+                        onClick={() =>
+                            editor.chain().focus().setTextAlign("right").run()
+                        }
+                        className={
+                            "px-3 py-2 text-sm bg-blue-500 text-white rounded hover:bg-blue-600"
+                        }
+                    >
+                        Right
+                    </button>
+                    <button
+                        onClick={() =>
+                            editor.chain().focus().setTextAlign('justify').run()
+                        }
+                        className={
+                            "px-3 py-2 text-sm bg-blue-500 text-white rounded hover:bg-blue-600"
+                        }
+                    >
+                        Justify
+                    </button>
+                </div>
+
+                <div className="flex gap-2">
+                    <input
+                        type="color"
+                        value={color}
+                        onChange={(e) => {
+                            setColor(e.target.value);
+                            changeTextColor(e.target.value);
+                        }}
+                        className="p-1 h-10 w-14 block bg-white border border-gray-200 cursor-pointer rounded-lg disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700"
+                    />
+                </div>
+                
             </BubbleMenu>
 
             {/* Plus Button and Dropdown for Adding New Section */}
