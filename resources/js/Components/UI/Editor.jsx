@@ -103,33 +103,36 @@ const TiptapEditor = () => {
             </div>
 
             <BubbleMenu
+                shouldShow={(data) => {
+                    return (data.editor.isActive('paragraph') || data.editor.isActive('bulletList')) && !data.state.selection.empty;
+                }}
                 editor={editor}
                 className="flex flex-col gap-2 p-2 bg-white border border-gray-200 rounded shadow-lg"
             >
                 <div className="flex gap-2">
                     <button
                         onClick={() => editor.commands.toggleBold()}
-                        className="px-3 py-2 text-sm bg-blue-500 text-white rounded hover:bg-blue-600"
+                        className={`px-3 py-2 text-sm ${editor.isActive('bold') ? "bg-blue-200 text-gray-800" : "bg-gray-100 text-gray-500"} rounded hover:text-blue-600`}
                     >
-                        Bold
+                        <i class="bi bi-type-bold text-md"></i>
                     </button>
                     <button
                         onClick={() => editor.commands.toggleItalic()}
-                        className="px-3 py-2 text-sm bg-blue-500 text-white rounded hover:bg-blue-600"
+                        className={`px-3 py-2 text-sm ${editor.isActive('italic') ? "bg-blue-200 text-gray-800" : "bg-gray-100 text-gray-500"} rounded hover:text-blue-600`}
                     >
-                        Italic
-                    </button>
-                    <button
-                        onClick={() => editor.chain().focus().toggleBulletList().run()}
-                        className={`px-3 py-2 text-sm ${editor.isActive('bulletList') ? "bg-sky-800 hover:bg-blue-600 " : "bg-blue-500"}  text-white rounded `}
-                    >
-                        Bullet list
+                        <i class="bi bi-type-italic text-md"></i>
                     </button>
                     <button
                         onClick={() => editor.chain().focus().toggleUnderline().run()}
-                        className={`px-3 py-2 text-sm ${editor.isActive('underline') ? "bg-sky-800 hover:bg-blue-600 " : "bg-blue-500"}  text-white rounded `}
+                        className={`px-3 py-2 text-sm ${editor.isActive('underline') ? "bg-blue-200 text-gray-800" : "bg-gray-100 text-gray-500"} rounded hover:text-blue-600`}
                     >
-                        Underline
+                        <i class="bi bi-type-underline text-md"></i>
+                    </button>
+                    <button
+                        onClick={() => editor.chain().focus().toggleBulletList().run()}
+                        className={`px-3 py-2 text-sm ${editor.isActive('bulletList') ? "bg-blue-200 text-gray-800" : "bg-gray-100 text-gray-500"} rounded hover:text-blue-600`}
+                    >
+                        <i class="bi bi-list-ul text-md"></i>
                     </button>
                 </div>
                 
@@ -139,40 +142,40 @@ const TiptapEditor = () => {
                             editor.chain().focus().setTextAlign("left").run()
                         }
                         className={
-                            "px-3 py-2 text-sm bg-blue-500 text-white rounded hover:bg-blue-600"
+                            `px-3 py-2 text-sm ${editor.isActive({ textAlign: 'left' }) ? "bg-blue-200 text-gray-800" : "bg-gray-100 text-gray-500"} rounded hover:text-blue-600`
                         }
                     >
-                        Left
+                        <i class="bi bi-text-left text-md"></i>
                     </button>
                     <button
                         onClick={() =>
                             editor.chain().focus().setTextAlign("center").run()
                         }
                         className={
-                            "px-3 py-2 text-sm bg-blue-500 text-white rounded hover:bg-blue-600"
+                            `px-3 py-2 text-sm ${editor.isActive({ textAlign: 'center' }) ? "bg-blue-200 text-gray-800" : "bg-gray-100 text-gray-500"} rounded hover:text-blue-600`
                         }
                     >
-                        Center
+                        <i class="bi bi-text-center text-md"></i>
                     </button>
                     <button
                         onClick={() =>
                             editor.chain().focus().setTextAlign("right").run()
                         }
                         className={
-                            "px-3 py-2 text-sm bg-blue-500 text-white rounded hover:bg-blue-600"
+                            `px-3 py-2 text-sm ${editor.isActive({ textAlign: 'right' }) ? "bg-blue-200 text-gray-800" : "bg-gray-100 text-gray-500"} rounded hover:text-blue-600`
                         }
                     >
-                        Right
+                        <i class="bi bi-text-right text-md"></i>
                     </button>
                     <button
                         onClick={() =>
                             editor.chain().focus().setTextAlign('justify').run()
                         }
                         className={
-                            "px-3 py-2 text-sm bg-blue-500 text-white rounded hover:bg-blue-600"
+                            `px-3 py-2 text-sm ${editor.isActive({ textAlign: 'justify' }) ? "bg-blue-200 text-gray-800" : "bg-gray-100 text-gray-500"} rounded hover:text-blue-600`
                         }
                     >
-                        Justify
+                        <i class="bi bi-justify text-md"></i>
                     </button>
                 </div>
 
