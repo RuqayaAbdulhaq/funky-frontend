@@ -11,6 +11,8 @@ import Text from '@tiptap/extension-text';
 import ListItem from "@tiptap/extension-list-item";
 import Underline from '@tiptap/extension-underline';
 import BulletList from '@tiptap/extension-bullet-list';
+import HorizontalRule from '@tiptap/extension-horizontal-rule'
+import HardBreak from '@tiptap/extension-hard-break'
 import { all, createLowlight } from "lowlight";
 import css from "highlight.js/lib/languages/css";
 import js from "highlight.js/lib/languages/javascript";
@@ -43,6 +45,8 @@ const TiptapEditor = () => {
             Text,
             BulletList,
             ListItem,
+            HardBreak,
+            HorizontalRule,
             Color.configure({ types: [TextStyle.name, ListItem.name] }),
         ],
         content: "<p>Start writing...</p>",
@@ -82,6 +86,18 @@ const TiptapEditor = () => {
                 editor?.commands
                     .insertContent(
                         '<div class="mb-6 "><h1 class="text-4xl dark:text-white">header 1</h1></div>'
+                    );
+                break;
+            case "br":
+                editor?.commands
+                    .insertContent(
+                        '<br/>'
+                    );
+                break;
+            case "hr":
+                editor?.commands
+                    .insertContent(
+                        '<hr/>'
                     );
                 break;
             default:
@@ -232,6 +248,18 @@ const TiptapEditor = () => {
                             onClick={() => addNewSection("h1")}
                         >
                             H1
+                        </button>
+                        <button
+                            className="block w-full px-4 py-2 text-left hover:bg-gray-200"
+                            onClick={() => addNewSection("br")}
+                        >
+                            Break
+                        </button>
+                        <button
+                            className="block w-full px-4 py-2 text-left hover:bg-gray-200"
+                            onClick={() => addNewSection("hr")}
+                        >
+                            Horizontal Rule 
                         </button>
                     </div>
                 )}
