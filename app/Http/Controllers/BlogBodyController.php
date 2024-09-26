@@ -25,13 +25,13 @@ class BlogBodyController extends Controller
     // Store a newly created blog body in the database
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'blog_header_id' => 'required|exists:blog_headers,id',
-            'body' => 'required|json',
-            'language' => 'required|string|max:10',
-        ]);
-
-        BlogBody::create($validatedData);
+        // $validatedData = $request->validate([
+        //     'blog_header_id' => 'required|exists:blog_headers,id',
+        //     'body' => 'required|json',
+        //     'language' => 'required|string|max:10',
+        // ]);
+        echo("using store");
+        // BlogBody::create($validatedData);
 
         return redirect()->route('blog_bodies.index')->with('success', 'Blog body created successfully.');
     }

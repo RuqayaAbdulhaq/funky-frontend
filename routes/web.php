@@ -5,6 +5,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\BlogHeaderController;
+use App\Http\Controllers\BlogBodyController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -38,6 +39,8 @@ Route::get('/admin/blogs', function () {
 Route::get('/admin/create-blog', function () {
     return Inertia::render('admin/CreateBlog');
 });
+
+Route::get('/admin/blog/store',[BlogBodyController::class, 'store']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
