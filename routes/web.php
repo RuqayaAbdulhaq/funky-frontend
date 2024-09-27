@@ -32,9 +32,7 @@ Route::get('/blog/{id}', function () {
     return Inertia::render('BlogDetails');
 });
 
-Route::get('/admin/blogs', function () {
-    return Inertia::render('admin/Blogs');
-});
+Route::get('/admin/blogs', [BlogHeaderController::class, 'index']);
 
 Route::get('/admin/create-blog', function () {
     return Inertia::render('admin/CreateBlog');

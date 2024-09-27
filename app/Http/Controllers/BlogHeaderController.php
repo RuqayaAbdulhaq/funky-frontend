@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\BlogHeader;
+use Inertia\Inertia;
 
 class BlogHeaderController extends Controller
 {
@@ -13,8 +14,8 @@ class BlogHeaderController extends Controller
      */
     public function index()
     {
-        $blogs = BlogHeader::all();
-        return view('blog_headers.index', compact('blogs'));
+        $blogs = BlogHeader::paginate(10);
+        return Inertia::render('admin/Blogs',['blogs' => $blogs]); 
     }
 
     /**

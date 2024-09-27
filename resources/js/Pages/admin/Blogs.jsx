@@ -12,6 +12,8 @@ const columns = [
   ];
 
 export default function AdminBlogs(props){
+
+  console.log(props);
     return (
         <div className="flex justify-center items-center">
             <DataTable data={data} columns={columns}/>
