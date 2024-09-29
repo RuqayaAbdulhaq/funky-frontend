@@ -25,7 +25,7 @@ const Table= ({ columns, data }) => {
                   key={colIndex}
                   className="px-6 py-4 whitespace-nowrap"
                 >
-                  {row[column.accessor]}
+                  {column.cell ? column.cell({row, value: row[column.accessor]}) : row[column.accessor]}
                 </td>
               ))}
             </tr>

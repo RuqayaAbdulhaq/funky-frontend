@@ -36,7 +36,7 @@ Route::get('/admin/blogs', [BlogHeaderController::class, 'index']);
 
 Route::get('/admin/create-blog', function () {
     return Inertia::render('admin/CreateBlog');
-});
+})->name('admin.create.blog');
 
 Route::get('/admin/blog/store',[BlogBodyController::class, 'store']);
 
