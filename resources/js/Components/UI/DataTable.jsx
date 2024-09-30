@@ -3,7 +3,7 @@ import React from 'react';
 
 const Table= ({ columns, data }) => {
   return (
-    <div className="mt-12 shadow-sm border rounded-lg overflow-x-auto">
+    <div className="mt-12 w-full shadow-sm border rounded-lg overflow-x-auto">
       <table className="w-full table-auto text-sm text-left">
         <thead className="bg-gray-100 text-gray-600 font-medium border-b">
           <tr>
@@ -32,6 +32,9 @@ const Table= ({ columns, data }) => {
           ))}
         </tbody>
       </table>
+      <div className='p-4'>
+          <div>Pagination</div>
+      </div>
     </div>
   );
 };
