@@ -26,13 +26,13 @@ Route::get('/home', function () {
 
 Route::get('/blogs', function () {
     return Inertia::render('Blogs');
-});
+})->middleware(['auth', 'verified']);
 
 Route::get('/blog/{id}', function () {
     return Inertia::render('BlogDetails');
 });
 
-Route::get('/admin/blogs', [BlogHeaderController::class, 'index']);
+Route::get('/admin/blogs', [BlogHeaderController::class, 'index'])->middleware(['auth', 'verified']);
 
 Route::get('/admin/create-blog', function () {
     return Inertia::render('admin/CreateBlog');
@@ -45,6 +45,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::post('/blog-header',[BlogHeaderController::class,'store'])->name('create.blog');
 
 Route::resource('blog_headers',BlogHeaderController::class);
 

@@ -19,21 +19,13 @@ class BlogHeaderController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        return view('blog_headers.create');
-    }
-
-    /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
-            'short_description' => 'required|string|max:1000',
+            'description' => 'required|string|max:1000',
         ]);
 
         $validatedData['user_id'] = auth()->id(); // Set the logged-in user ID
@@ -67,7 +59,7 @@ class BlogHeaderController extends Controller
     {
         $validatedData = $request->validate([
             'title' => 'required|string|max:255',
-            'short_description' => 'required|string|max:1000',
+            'description' => 'required|string|max:1000',
         ]);
 
         $validatedData['version'] = $blogHeader->version + 1; // Increment version
