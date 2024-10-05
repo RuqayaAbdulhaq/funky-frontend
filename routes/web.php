@@ -32,11 +32,11 @@ Route::get('/blog/{id}', function () {
     return Inertia::render('BlogDetails');
 });
 
-Route::get('/admin/blogs', [BlogHeaderController::class, 'index'])->middleware(['auth', 'verified']);
+Route::get('/admin/blogs', [BlogHeaderController::class, 'index'])->name('admin.blogs')->middleware(['auth', 'verified']);
 
 Route::get('/admin/create-blog', function () {
     return Inertia::render('admin/CreateBlog');
-})->name('admin.create-blog');
+})->name('admin.create-blog')->middleware(['auth', 'verified']);
 
 Route::get('/admin/blog/store',[BlogBodyController::class, 'store']);
 
