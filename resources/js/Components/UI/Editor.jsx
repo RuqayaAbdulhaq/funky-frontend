@@ -6,13 +6,13 @@ import { Image } from "@tiptap/extension-image";
 import { Link } from "@tiptap/extension-link";
 import { Color } from "@tiptap/extension-color";
 import TextStyle from "@tiptap/extension-text-style";
-import TextAlign from '@tiptap/extension-text-align';
-import Text from '@tiptap/extension-text';
+import TextAlign from "@tiptap/extension-text-align";
+import Text from "@tiptap/extension-text";
 import ListItem from "@tiptap/extension-list-item";
-import Underline from '@tiptap/extension-underline';
-import BulletList from '@tiptap/extension-bullet-list';
-import HorizontalRule from '@tiptap/extension-horizontal-rule'
-import HardBreak from '@tiptap/extension-hard-break'
+import Underline from "@tiptap/extension-underline";
+import BulletList from "@tiptap/extension-bullet-list";
+import HorizontalRule from "@tiptap/extension-horizontal-rule";
+import HardBreak from "@tiptap/extension-hard-break";
 import { all, createLowlight } from "lowlight";
 import css from "highlight.js/lib/languages/css";
 import js from "highlight.js/lib/languages/javascript";
@@ -27,7 +27,9 @@ lowlight.register("js", js);
 lowlight.register("ts", ts);
 
 const TiptapEditor = () => {
-    const { data, loading, error, fire } = useApi('/admin/blog/store',{method: "get"});
+    const { data, loading, error, fire } = useApi("/admin/blog/store", {
+        method: "get",
+    });
 
     const [isDropdownOpen, setDropdownOpen] = useState(false); // State for dropdown
     const [color, setColor] = useState("#000000");
@@ -42,7 +44,7 @@ const TiptapEditor = () => {
             Link,
             TextStyle,
             TextAlign.configure({
-                types: ['heading', 'paragraph'],
+                types: ["heading", "paragraph"],
             }),
             Underline,
             Text,
@@ -62,40 +64,30 @@ const TiptapEditor = () => {
     const addNewSection = (type) => {
         switch (type) {
             case "text":
-                editor?.commands
-                    .insertContent(
-                        '<div class="mb-6"><p>new Section...</p></div>'
-                    );
+                editor?.commands.insertContent(
+                    '<div class="mb-6"><p>new Section...</p></div>'
+                );
                 break;
             case "code":
-                editor?.commands
-                    .insertContent(
-                        '<div class="mb-6"><pre><code>console.log("Hello World!")</code></pre></div>'
-                    );
+                editor?.commands.insertContent(
+                    '<div class="mb-6"><pre><code>console.log("Hello World!")</code></pre></div>'
+                );
                 break;
             case "image":
-                editor?.commands
-                    .insertContent(
-                        '<div class="mb-6"><img src="https://via.placeholder.com/150" /></div>'
-                    );
+                editor?.commands.insertContent(
+                    '<div class="mb-6"><img src="https://via.placeholder.com/150" /></div>'
+                );
                 break;
             case "h1":
-                editor?.commands
-                    .insertContent(
-                        '<div class="mb-6 "><h1 class="text-4xl dark:text-white">header 1</h1></div>'
-                    );
+                editor?.commands.insertContent(
+                    '<div class="mb-6 "><h1 class="text-4xl dark:text-white">header 1</h1></div>'
+                );
                 break;
             case "br":
-                editor?.commands
-                    .insertContent(
-                        '<br/>'
-                    );
+                editor?.commands.insertContent("<br/>");
                 break;
             case "hr":
-                editor?.commands
-                    .insertContent(
-                        '<hr/>'
-                    );
+                editor?.commands.insertContent("<hr/>");
                 break;
             default:
                 break;
@@ -104,21 +96,32 @@ const TiptapEditor = () => {
     };
 
     return (
-        <div className="w-[60%] mx-auto">
+        <div className="mx-auto">
             {/* Fixed Header for content type selection */}
             <div className="sticky top-0 z-10 flex justify-between items-center bg-gray-100 p-4 border-b border-gray-300">
                 <h2 className="text-lg font-bold">Editor Toolbar</h2>
-                <button onClick={()=>{fire()}} className="bg-blue-600 text-white rounded-md py-2 px-4">Save</button>
+                <button
+                    onClick={() => {
+                        fire();
+                    }}
+                    className="bg-blue-600 text-white rounded-md py-2 px-4"
+                >
+                    Save
+                </button>
             </div>
 
             {/* Editor Container */}
-            <div className="prose prose-lg max-w-none p-4 border border-gray-300 rounded-md shadow-sm focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-500">
+            <div className="prose prose-lg max-w-none p-4 border border-gray-300 rounded-md focus-within:border-blue-500 focus-within:ring-2 focus-within:ring-blue-500">
                 <EditorContent editor={editor} />
             </div>
 
             <BubbleMenu
                 shouldShow={(data) => {
-                    return (data.editor.isActive('paragraph') || data.editor.isActive('bulletList')) && !data.state.selection.empty;
+                    return (
+                        (data.editor.isActive("paragraph") ||
+                            data.editor.isActive("bulletList")) &&
+                        !data.state.selection.empty
+                    );
                 }}
                 editor={editor}
                 className="flex flex-col gap-2 p-2 bg-white border border-gray-200 rounded shadow-lg"
@@ -126,38 +129,60 @@ const TiptapEditor = () => {
                 <div className="flex gap-2">
                     <button
                         onClick={() => editor.commands.toggleBold()}
-                        className={`px-3 py-2 text-sm ${editor.isActive('bold') ? "bg-blue-200 text-gray-800" : "bg-gray-100 text-gray-500"} rounded hover:text-blue-600`}
+                        className={`px-3 py-2 text-sm ${
+                            editor.isActive("bold")
+                                ? "bg-blue-200 text-gray-800"
+                                : "bg-gray-100 text-gray-500"
+                        } rounded hover:text-blue-600`}
                     >
                         <i class="bi bi-type-bold text-md"></i>
                     </button>
                     <button
                         onClick={() => editor.commands.toggleItalic()}
-                        className={`px-3 py-2 text-sm ${editor.isActive('italic') ? "bg-blue-200 text-gray-800" : "bg-gray-100 text-gray-500"} rounded hover:text-blue-600`}
+                        className={`px-3 py-2 text-sm ${
+                            editor.isActive("italic")
+                                ? "bg-blue-200 text-gray-800"
+                                : "bg-gray-100 text-gray-500"
+                        } rounded hover:text-blue-600`}
                     >
                         <i class="bi bi-type-italic text-md"></i>
                     </button>
                     <button
-                        onClick={() => editor.chain().focus().toggleUnderline().run()}
-                        className={`px-3 py-2 text-sm ${editor.isActive('underline') ? "bg-blue-200 text-gray-800" : "bg-gray-100 text-gray-500"} rounded hover:text-blue-600`}
+                        onClick={() =>
+                            editor.chain().focus().toggleUnderline().run()
+                        }
+                        className={`px-3 py-2 text-sm ${
+                            editor.isActive("underline")
+                                ? "bg-blue-200 text-gray-800"
+                                : "bg-gray-100 text-gray-500"
+                        } rounded hover:text-blue-600`}
                     >
                         <i class="bi bi-type-underline text-md"></i>
                     </button>
                     <button
-                        onClick={() => editor.chain().focus().toggleBulletList().run()}
-                        className={`px-3 py-2 text-sm ${editor.isActive('bulletList') ? "bg-blue-200 text-gray-800" : "bg-gray-100 text-gray-500"} rounded hover:text-blue-600`}
+                        onClick={() =>
+                            editor.chain().focus().toggleBulletList().run()
+                        }
+                        className={`px-3 py-2 text-sm ${
+                            editor.isActive("bulletList")
+                                ? "bg-blue-200 text-gray-800"
+                                : "bg-gray-100 text-gray-500"
+                        } rounded hover:text-blue-600`}
                     >
                         <i class="bi bi-list-ul text-md"></i>
                     </button>
                 </div>
-                
+
                 <div className="flex gap-2">
                     <button
                         onClick={() =>
                             editor.chain().focus().setTextAlign("left").run()
                         }
-                        className={
-                            `px-3 py-2 text-sm ${editor.isActive({ textAlign: 'left' }) ? "bg-blue-200 text-gray-800" : "bg-gray-100 text-gray-500"} rounded hover:text-blue-600`
-                        }
+                        className={`px-3 py-2 text-sm ${
+                            editor.isActive({ textAlign: "left" })
+                                ? "bg-blue-200 text-gray-800"
+                                : "bg-gray-100 text-gray-500"
+                        } rounded hover:text-blue-600`}
                     >
                         <i class="bi bi-text-left text-md"></i>
                     </button>
@@ -165,9 +190,11 @@ const TiptapEditor = () => {
                         onClick={() =>
                             editor.chain().focus().setTextAlign("center").run()
                         }
-                        className={
-                            `px-3 py-2 text-sm ${editor.isActive({ textAlign: 'center' }) ? "bg-blue-200 text-gray-800" : "bg-gray-100 text-gray-500"} rounded hover:text-blue-600`
-                        }
+                        className={`px-3 py-2 text-sm ${
+                            editor.isActive({ textAlign: "center" })
+                                ? "bg-blue-200 text-gray-800"
+                                : "bg-gray-100 text-gray-500"
+                        } rounded hover:text-blue-600`}
                     >
                         <i class="bi bi-text-center text-md"></i>
                     </button>
@@ -175,19 +202,23 @@ const TiptapEditor = () => {
                         onClick={() =>
                             editor.chain().focus().setTextAlign("right").run()
                         }
-                        className={
-                            `px-3 py-2 text-sm ${editor.isActive({ textAlign: 'right' }) ? "bg-blue-200 text-gray-800" : "bg-gray-100 text-gray-500"} rounded hover:text-blue-600`
-                        }
+                        className={`px-3 py-2 text-sm ${
+                            editor.isActive({ textAlign: "right" })
+                                ? "bg-blue-200 text-gray-800"
+                                : "bg-gray-100 text-gray-500"
+                        } rounded hover:text-blue-600`}
                     >
                         <i class="bi bi-text-right text-md"></i>
                     </button>
                     <button
                         onClick={() =>
-                            editor.chain().focus().setTextAlign('justify').run()
+                            editor.chain().focus().setTextAlign("justify").run()
                         }
-                        className={
-                            `px-3 py-2 text-sm ${editor.isActive({ textAlign: 'justify' }) ? "bg-blue-200 text-gray-800" : "bg-gray-100 text-gray-500"} rounded hover:text-blue-600`
-                        }
+                        className={`px-3 py-2 text-sm ${
+                            editor.isActive({ textAlign: "justify" })
+                                ? "bg-blue-200 text-gray-800"
+                                : "bg-gray-100 text-gray-500"
+                        } rounded hover:text-blue-600`}
                     >
                         <i class="bi bi-justify text-md"></i>
                     </button>
@@ -206,21 +237,31 @@ const TiptapEditor = () => {
                 </div>
 
                 <div class="relative">
-                    <input type="text" id="input-url" class="peer p-4 block w-full border-gray-200 rounded-lg text-sm placeholder:text-transparent focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:focus:ring-neutral-600
+                    <input
+                        type="text"
+                        id="input-url"
+                        class="peer p-4 block w-full border-gray-200 rounded-lg text-sm placeholder:text-transparent focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:focus:ring-neutral-600
                     focus:pt-6
                     focus:pb-2
                     [&:not(:placeholder-shown)]:pt-6
                     [&:not(:placeholder-shown)]:pb-2
                     autofill:pt-6
-                    autofill:pb-2" placeholder="URL"
-                    onChange={(e)=>{
-                        if(e.target.value){
-                            editor.commands.setLink({ href: e.target.value, target: '_blank' })
-                        }else{
-                            editor.commands.unsetLink()
-                        }
-                    }}/>
-                    <label for="input-url" class="absolute top-0 start-0 p-4 h-full text-sm truncate pointer-events-none transition ease-in-out duration-100 border border-transparent  origin-[0_0] dark:text-white peer-disabled:opacity-50 peer-disabled:pointer-events-none
+                    autofill:pb-2"
+                        placeholder="URL"
+                        onChange={(e) => {
+                            if (e.target.value) {
+                                editor.commands.setLink({
+                                    href: e.target.value,
+                                    target: "_blank",
+                                });
+                            } else {
+                                editor.commands.unsetLink();
+                            }
+                        }}
+                    />
+                    <label
+                        for="input-url"
+                        class="absolute top-0 start-0 p-4 h-full text-sm truncate pointer-events-none transition ease-in-out duration-100 border border-transparent  origin-[0_0] dark:text-white peer-disabled:opacity-50 peer-disabled:pointer-events-none
                     peer-focus:scale-90
                     peer-focus:translate-x-0.5
                     peer-focus:-translate-y-1.5
@@ -228,30 +269,39 @@ const TiptapEditor = () => {
                     peer-[:not(:placeholder-shown)]:scale-90
                     peer-[:not(:placeholder-shown)]:translate-x-0.5
                     peer-[:not(:placeholder-shown)]:-translate-y-1.5
-                    peer-[:not(:placeholder-shown)]:text-gray-500 dark:peer-[:not(:placeholder-shown)]:text-neutral-500 dark:text-neutral-500">URL</label>
+                    peer-[:not(:placeholder-shown)]:text-gray-500 dark:peer-[:not(:placeholder-shown)]:text-neutral-500 dark:text-neutral-500"
+                    >
+                        URL
+                    </label>
                 </div>
-                
             </BubbleMenu>
 
             <BubbleMenu
                 shouldShow={(data) => {
-                    return data.editor.isActive('image');
+                    return data.editor.isActive("image");
                 }}
                 editor={editor}
                 className="flex flex-col gap-2 p-2 bg-white border border-gray-200 rounded shadow-lg"
-
             >
-
                 <div class="relative">
-                    <input type="text" id="input-src" class="peer p-4 block w-full border-gray-200 rounded-lg text-sm placeholder:text-transparent focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:focus:ring-neutral-600
+                    <input
+                        type="text"
+                        id="input-src"
+                        class="peer p-4 block w-full border-gray-200 rounded-lg text-sm placeholder:text-transparent focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:focus:ring-neutral-600
                     focus:pt-6
                     focus:pb-2
                     [&:not(:placeholder-shown)]:pt-6
                     [&:not(:placeholder-shown)]:pb-2
                     autofill:pt-6
-                    autofill:pb-2" placeholder="Source"
-                    onChange={(e)=>{editor.commands.setImage({ src: e.target.value })}}/>
-                    <label for="input-src" class="absolute top-0 start-0 p-4 h-full text-sm truncate pointer-events-none transition ease-in-out duration-100 border border-transparent  origin-[0_0] dark:text-white peer-disabled:opacity-50 peer-disabled:pointer-events-none
+                    autofill:pb-2"
+                        placeholder="Source"
+                        onChange={(e) => {
+                            editor.commands.setImage({ src: e.target.value });
+                        }}
+                    />
+                    <label
+                        for="input-src"
+                        class="absolute top-0 start-0 p-4 h-full text-sm truncate pointer-events-none transition ease-in-out duration-100 border border-transparent  origin-[0_0] dark:text-white peer-disabled:opacity-50 peer-disabled:pointer-events-none
                     peer-focus:scale-90
                     peer-focus:translate-x-0.5
                     peer-focus:-translate-y-1.5
@@ -259,9 +309,11 @@ const TiptapEditor = () => {
                     peer-[:not(:placeholder-shown)]:scale-90
                     peer-[:not(:placeholder-shown)]:translate-x-0.5
                     peer-[:not(:placeholder-shown)]:-translate-y-1.5
-                    peer-[:not(:placeholder-shown)]:text-gray-500 dark:peer-[:not(:placeholder-shown)]:text-neutral-500 dark:text-neutral-500">Source</label>
+                    peer-[:not(:placeholder-shown)]:text-gray-500 dark:peer-[:not(:placeholder-shown)]:text-neutral-500 dark:text-neutral-500"
+                    >
+                        Source
+                    </label>
                 </div>
-
             </BubbleMenu>
 
             {/* Plus Button and Dropdown for Adding New Section */}
@@ -308,7 +360,7 @@ const TiptapEditor = () => {
                             className="block w-full px-4 py-2 text-left hover:bg-gray-200"
                             onClick={() => addNewSection("hr")}
                         >
-                            Horizontal Rule 
+                            Horizontal Rule
                         </button>
                     </div>
                 )}

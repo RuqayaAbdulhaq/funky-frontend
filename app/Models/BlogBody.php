@@ -13,7 +13,7 @@ class BlogBody extends Model
      protected $fillable = [
         'blog_header_id',
         'body',
-        'language_code',
+        'language',
     ];
 
     // Define the relationship to the blog header

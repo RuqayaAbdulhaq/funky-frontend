@@ -5,14 +5,25 @@ namespace App\Http\Controllers;
 use App\Models\BlogBody;
 use App\Models\BlogHeader;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class BlogBodyController extends Controller
 {
-    // Display a listing of the blog bodies
-    public function index()
+    // Fetches the requested blog's body if not found it creates a new blog body for it.
+    public function index($id)
     {
-        $blogBodies = BlogBody::all();
-        return view('blog_bodies.index', compact('blogBodies'));
+        $blogBody = BlogBody::where('blog_header_id',$id)->first();
+        if(!$blogBody){
+            $blogBody = BlogBody::create([
+                'blog_header_id' => $id,
+                'body' => json_encode((object) []),
+                'language' => 'en'
+            ]);
+        }
+        return Inertia::render('admin/CreateBlog',[
+            'head_id' => $id,
+            'blog' => $blogBody
+        ]);
     }
 
     // Show the form for creating a new blog body

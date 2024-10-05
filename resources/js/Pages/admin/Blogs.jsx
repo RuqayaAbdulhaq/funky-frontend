@@ -5,13 +5,14 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head } from "@inertiajs/react";
 
 const actionsList = (props) => {
+    const { row } = props;
     return (
         <Dropdown>
             <Dropdown.Trigger>
                 <i className="bi bi-three-dots-vertical cursor-pointer"></i>
             </Dropdown.Trigger>
             <Dropdown.Content>
-                <Dropdown.Link href={route("admin.create-blog")}>
+                <Dropdown.Link href={route(`admin.create-blog`, row.id)}>
                     Build
                 </Dropdown.Link>
             </Dropdown.Content>
