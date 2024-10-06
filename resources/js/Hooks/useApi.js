@@ -5,11 +5,11 @@ const useApi = (url, options = {}) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const fire = useCallback(async () => {
+  const fire = useCallback(async (body) => {
     setLoading(true);
     setError(null);
     try {
-      const response = await fetch(url, options);
+      const response = await fetch(url, {...options, body: JSON.stringify(body)});
       if (!response.ok) {
         throw new Error(`Error: ${response.status}`);
       }

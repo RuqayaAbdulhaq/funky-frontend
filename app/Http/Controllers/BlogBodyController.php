@@ -61,17 +61,23 @@ class BlogBodyController extends Controller
     }
 
     // Update the specified blog body in the database
-    public function update(Request $request, BlogBody $blogBody)
+    public function update(Request $request, $id)
     {
+        // Find the specific blog body by ID
+        $blogBody = BlogBody::findOrFail($id);
+
+        // Validate only the fields that are provided in the request
         $validatedData = $request->validate([
-            'blog_header_id' => 'required|exists:blog_headers,id',
-            'body' => 'required|json',
-            'language' => 'required|string|max:10',
+            'blog_header_id' => 'nullable|exists:blog_headers,id',
+            'body' => 'nullable|json',
+            'language' => 'nullable|string|max:10',
         ]);
 
-        $blogBody->update($validatedData);
+        // Update only the fields that are present in the request
+        $blogBody->update(array_filter($validatedData));
 
-        return redirect()->route('blog_bodies.index')->with('success', 'Blog body updated successfully.');
+        // Redirect with success message
+        return redirect()->route('admin.blogs')->with('success', 'Blog body updated successfully.');
     }
 
     // Remove the specified blog body from the database

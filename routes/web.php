@@ -36,6 +36,8 @@ Route::get('/admin/blogs', [BlogHeaderController::class, 'index'])->name('admin.
 
 Route::get('/admin/create-blog/{id}', [BlogBodyController::class, 'index'])->name('admin.create-blog')->middleware(['auth', 'verified']);
 
+Route::put('/blogs/{id}/update', [BlogBodyController::class, 'update'])->name('admin.blogs.update')->middleware(['auth', 'verified']);
+
 Route::get('/admin/blog/store',[BlogBodyController::class, 'store']);
 
 Route::middleware('auth')->group(function () {

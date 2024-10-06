@@ -18,7 +18,7 @@ import css from "highlight.js/lib/languages/css";
 import js from "highlight.js/lib/languages/javascript";
 import ts from "highlight.js/lib/languages/typescript";
 import html from "highlight.js/lib/languages/xml";
-import useApi from "@/Hooks/useApi";
+import { router } from "@inertiajs/react";
 
 const lowlight = createLowlight(all);
 lowlight.register("html", html);
@@ -26,11 +26,7 @@ lowlight.register("css", css);
 lowlight.register("js", js);
 lowlight.register("ts", ts);
 
-const TiptapEditor = () => {
-    const { data, loading, error, fire } = useApi("/admin/blog/store", {
-        method: "get",
-    });
-
+const TiptapEditor = (props) => {
     const [isDropdownOpen, setDropdownOpen] = useState(false); // State for dropdown
     const [color, setColor] = useState("#000000");
 
@@ -54,7 +50,7 @@ const TiptapEditor = () => {
             HorizontalRule,
             Color.configure({ types: [TextStyle.name, ListItem.name] }),
         ],
-        content: "<p>Start writing...</p>",
+        content: JSON.parse(props.blog?.body || {}),
     });
 
     const changeTextColor = (color) => {
@@ -95,15 +91,32 @@ const TiptapEditor = () => {
         setDropdownOpen(false); // Close dropdown after selection
     };
 
+    const onSubmitHandler = async () => {
+        router.put(
+            `/blogs/${props.blog?.id}/update`,
+            {
+                body: JSON.stringify(editor.getJSON()),
+            },
+            {
+                onSuccess: () => {
+                    // Handle success, e.g., show a success message or redirect
+                    console.log("Blog updated successfully");
+                },
+                onError: (errors) => {
+                    // Handle validation or other errors
+                    console.error(errors);
+                },
+            }
+        );
+    };
+
     return (
         <div className="mx-auto">
             {/* Fixed Header for content type selection */}
             <div className="sticky top-0 z-10 flex justify-between items-center bg-gray-100 p-4 border-b border-gray-300">
                 <h2 className="text-lg font-bold">Editor Toolbar</h2>
                 <button
-                    onClick={() => {
-                        fire();
-                    }}
+                    onClick={onSubmitHandler}
                     className="bg-blue-600 text-white rounded-md py-2 px-4"
                 >
                     Save
