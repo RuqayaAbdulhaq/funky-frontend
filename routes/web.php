@@ -7,6 +7,11 @@ use Inertia\Inertia;
 use App\Http\Controllers\BlogHeaderController;
 use App\Http\Controllers\BlogBodyController;
 
+use App\Http\Controllers\FileUploadController;
+
+
+
+
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
@@ -45,6 +50,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::post('/upload', [FileUploadController::class, 'store'])->middleware(['auth', 'verified']);
 
 Route::post('/blog-header',[BlogHeaderController::class,'store'])->name('create.blog');
 
