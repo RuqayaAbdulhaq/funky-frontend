@@ -13,6 +13,7 @@ class BlogHeader extends Model
         'user_id',
         'title',
         'description',
+        'thumbnail_id',
         'version'
     ];
 
