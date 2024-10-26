@@ -8,6 +8,7 @@ import { useState } from "react";
 
 export default function AdminBlogs(props) {
     const [show, setShow] = useState(false);
+    const [selectedRow,setSelectedRow] = useState("");
 
     const actionsList = (props) => {
         const { row } = props;
@@ -22,11 +23,11 @@ export default function AdminBlogs(props) {
                     </Dropdown.Link>
                     <div onClick={() => {
                         setShow(true);
+                        setSelectedRow(row.id);
                     }}
                         className="block w-full px-4 py-2 text-start text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100">
                             Edit Thumbnail
                     </div>
-                    <AddThumbnail id={row.id}/>
                 </Dropdown.Content>
             </Dropdown>
         );
@@ -54,7 +55,7 @@ export default function AdminBlogs(props) {
                     <div className="bg-white p-4 overflow-hidden shadow-sm sm:rounded-lg">
                         <div className="flex flex-col gap-2 w-full">
                             <AddBlog />
-                            <AddThumbnail setShow={setShow} show={show}/>
+                            <AddThumbnail id={selectedRow} setShow={setShow} show={show}/>
                             <DataTable
                                 data={props.blogs?.data}
                                 columns={columns}

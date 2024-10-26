@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\UploadedFile;
+use App\Models\File;
 
-class FileUploadController extends Controller
+class FileController extends Controller
 {
     public function store(Request $request)
     {
@@ -22,7 +22,7 @@ class FileUploadController extends Controller
             $file->move(public_path('uploads'), $filename);
 
             // Save the file to the database and get the file ID
-            $uploadedFile = UploadedFile::create(['name' => $filename]);
+            $uploadedFile = File::create(['name' => $filename]);
 
             // Return the file ID
             return response()->json(['message' => 'File uploaded successfully', 'file_id' => $uploadedFile->id]);

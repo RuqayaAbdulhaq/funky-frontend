@@ -7,7 +7,7 @@ use Inertia\Inertia;
 use App\Http\Controllers\BlogHeaderController;
 use App\Http\Controllers\BlogBodyController;
 
-use App\Http\Controllers\FileUploadController;
+use App\Http\Controllers\FileController;
 
 
 
@@ -51,9 +51,11 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::post('/upload', [FileUploadController::class, 'store'])->middleware(['auth', 'verified']);
+Route::post('/upload', [FileController::class, 'store'])->middleware(['auth', 'verified']);
 
 Route::post('/blog-header',[BlogHeaderController::class,'store'])->name('create.blog');
+Route::post('/blog-headers/attach-thumbnail', [BlogHeaderController::class, 'attachThumbnail'])->name('attach.thumbnail');
+
 
 Route::resource('blog_headers',BlogHeaderController::class);
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\FileController;
 use Illuminate\Http\Request;
 use App\Models\BlogHeader;
 use Inertia\Inertia;
@@ -77,5 +78,33 @@ class BlogHeaderController extends Controller
         $blogHeader->delete();
 
         return redirect()->route('blog_headers.index')->with('success', 'Blog deleted successfully.');
+    }
+
+     /**
+     * Attach a thumbnail to the blog header.
+     */
+    public function attachThumbnail(Request $request)
+    {
+        // Validate the input
+        $request->validate([
+            'file' => 'required|mimes:jpg,jpeg,png,pdf|max:2048',
+            'blog_header_id' => 'required|exists:blog_headers,id',
+        ]);
+
+        // Call the FileController to store the file
+        $fileUploadController = new FileController();
+        $response = $fileUploadController->store($request);
+
+        // Ensure the response contains a valid file ID
+        $fileId = $response->getData()->file_id ?? null;
+        if (!$fileId) {
+            return response()->json(['message' => 'Failed to upload the file'], 500);
+        }
+
+        // Update the blog header with the thumbnail ID
+        $blogHeader = BlogHeader::findOrFail($request->blog_header_id);
+        $blogHeader->update(['thumbnail_id' => $fileId]);
+
+        return response()->json(['message' => 'Thumbnail attached successfully']);
     }
 }

@@ -1,18 +1,27 @@
 import PrimaryButton from "@/Components/PrimaryButton";
 import Modal from "@/Components/Modal";
-import { useState } from "react";
+import { useEffect } from "react";
 import { useForm } from "@inertiajs/react";
 import FileInput from "@/Components/UI/FileInput";
  
 const ThumbnailForm = (props) => {
+    console.log(props);
     const { data, setData, post, processing, errors, reset } = useForm({
         file: null
     });
 
+    useEffect(()=>{
+        if(props.id){
+            setData("blog_header_id",props.id)
+        }else{
+            setData("blog_header_id","")
+        }
+    },[props.id])
+
     const submit = (e) => {
         e.preventDefault();
         try {
-            post(route("create.blog"));
+            post(route("attach.thumbnail"));
             onSucess();
         } catch (error) {
             console.log(error);
@@ -50,6 +59,7 @@ export default function AddThumbnail(props) {
             <div className="p-4 flex flex-col gap-4">
                 <h2 className="text-3xl dark:text-white">Edit Thumbnail</h2>
                 <ThumbnailForm
+                    id={props.id}
                     onClose={() => {
                         props.setShow(false);
                     }}
