@@ -1,5 +1,5 @@
 import PrimaryButton from "@/Components/PrimaryButton";
-import Modal from "@/Components/Modal";
+import Modal from "@/Components/UI/Modal";
 import { useEffect } from "react";
 import { useForm } from "@inertiajs/react";
 import FileInput from "@/Components/UI/FileInput";
@@ -55,16 +55,14 @@ export default function AddThumbnail(props) {
             onClose={() => {
                 props.setShow(false);
             }}
+            title="Edit Thumbnail"
         >
-            <div className="p-4 flex flex-col gap-4">
-                <h2 className="text-3xl dark:text-white">Edit Thumbnail</h2>
-                <ThumbnailForm
-                    id={props.id}
-                    onClose={() => {
-                        props.setShow(false);
-                    }}
-                />
-            </div>
+            <ThumbnailForm
+                id={props.id}
+                onClose={() => {
+                    props.setShow(false);
+                }}
+            />
         </Modal>
     );
 }

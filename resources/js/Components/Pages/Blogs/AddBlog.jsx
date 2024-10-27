@@ -1,10 +1,10 @@
 import PrimaryButton from "@/Components/PrimaryButton";
-import Modal from "@/Components/Modal";
+import Modal from "@/Components/UI/Modal";
 import { useState } from "react";
 import { useForm } from "@inertiajs/react";
-import InputError from "@/Components/InputError";
-import InputLabel from "@/Components/InputLabel";
-import TextInput from "@/Components/TextInput";
+import InputError from "@/Components/UI/InputError";
+import InputLabel from "@/Components/UI/InputLabel";
+import TextInput from "@/Components/UI/TextInput";
 import TextArea from "@/Components/UI/TextArea";
 
 const AddForm = (props) => {
@@ -82,15 +82,13 @@ export default function AddBlog(props) {
                 onClose={() => {
                     setShow(false);
                 }}
+                title="Add Blog"
             >
-                <div className="p-4 flex flex-col gap-4">
-                    <h2 class="text-3xl dark:text-white">Add Blog</h2>
-                    <AddForm
-                        onClose={() => {
-                            setShow(false);
-                        }}
-                    />
-                </div>
+                <AddForm
+                    onClose={() => {
+                        setShow(false);
+                    }}
+                />
             </Modal>
             <PrimaryButton
                 onClick={() => {
