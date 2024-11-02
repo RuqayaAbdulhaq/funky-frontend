@@ -1,7 +1,7 @@
 import DataTable from "@/Components/UI/DataTable";
 import AddBlog from "@/Components/Pages/Blogs/AddBlog";
 import AddThumbnail from "@/Components/Pages/Blogs/AddThumbnail";
-import Dropdown from "@/Components/Dropdown";
+import Dropdown from "@/Components/UI/Dropdown";
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head } from "@inertiajs/react";
 import { useState } from "react";
