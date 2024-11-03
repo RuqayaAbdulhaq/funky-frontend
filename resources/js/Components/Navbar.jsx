@@ -1,10 +1,11 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import { useScroll, useMotionValueEvent } from "framer-motion";
 import Logo2 from "./Logo3";
 
 function Links(props) {
     return (
         <nav>
-            <ul className="flex flex-col md:flex-row items-center gap-5 justify-between text-secondary-gray pt-4 md:pt-0">
+            <ul className="list-none flex flex-col md:flex-row items-center gap-5 justify-between text-secondary-gray pt-4 md:pt-0">
                 <li>
                     <a
                         className="py-3 px-0 block text-primary-dark underline underline-offset-8"
@@ -36,6 +37,13 @@ function Links(props) {
 
 export default function Navbar(props) {
 
+    const { scrollY } = useScroll();
+    const [scrolled, setScrolled] = useState(false);
+
+    useMotionValueEvent(scrollY,"change",(latest) => {
+            setScrolled(latest > 0);
+    })
+
     const drawerRef = useRef(null);
 
     const toggleDrawerHandler = () => {
@@ -49,7 +57,7 @@ export default function Navbar(props) {
     };
 
     return (
-        <header className="relative flex flex-wrap justify-between items-center py-4">
+        <header className={`${scrolled ? "bg-white/50 backdrop-blur-xl sticky top-0 left-0" : ""} relative z-[100] w-full px-[20px] flex flex-wrap justify-between items-center py-4`}>
             <div className="w-fit flex justify-between items-center">
                 <a href="#" className="text-xl text-white">
                     <Logo2 />
@@ -60,16 +68,7 @@ export default function Navbar(props) {
                 htmlFor="menu-toggle"
                 className="cursor-pointer md:hidden block"
             >
-                <svg
-                    className="fill-current text-secondary-gray"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 20 20"
-                >
-                    <title>menu</title>
-                    <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
-                </svg>
+                <i className="bi bi-list text-neutral-dark text-xl"></i>
             </label>
             <input
                 className="hidden"
