@@ -14,29 +14,39 @@ export default {
         extend: {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
-                'roboto': ['Roboto', 'sans-serif']
+                'roboto': ['Roboto', 'sans-serif'],
             },
             colors: {
-                "primary": "#067E9A",
-                "primary-dark": "#05718A",
-                "primary-light": "#CDE5EA",
-                "gray-light": "#FAFAFA",
-                "gray-warm": "#F5F5F5",
-                "gray-dark": "#EEEEEE",
-                "secondary": "#333333",
-                "secondary-dark": "#2C2C2C",
-                "secondary-gray": "#4F4F4F"
-            }
+                primary: {
+                    DEFAULT: "#067E9A",
+                    dark: "#05718A",
+                    light: "#CDE5EA",
+                },
+                neutral: {
+                    light: "#FAFAFA",
+                    warm: "#F5F5F5",
+                    DEFAULT: "#EEEEEE",
+                    dark: "#333333",
+                },
+                secondary: {
+                    DEFAULT: "#4F4F4F",
+                    dark: "#2C2C2C",
+                },
+                success: "#4CAF50",  // Green for success
+                warning: "#FFC107",  // Yellow for warning
+                danger: "#E53935",   // Red for danger
+            },
         },
     },
 
-    plugins: [forms, 
+    plugins: [
+        forms,
         function({ addBase }) {
             addBase({
-              'ul': { listStyleType: 'disc', paddingLeft: '1.25rem' },
-              'ol': { listStyleType: 'decimal', paddingLeft: '1.25rem' },
-              'li': { marginBottom: '0.5rem' },
+                'ul': { listStyleType: 'disc', paddingLeft: '1.25rem' },
+                'ol': { listStyleType: 'decimal', paddingLeft: '1.25rem' },
+                'li': { marginBottom: '0.5rem' },
             });
-          }
+        },
     ],
 };
