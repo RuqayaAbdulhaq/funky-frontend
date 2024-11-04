@@ -29,9 +29,11 @@ export default {
                     dark: "#333333",
                 },
                 secondary: {
-                    DEFAULT: "#4F4F4F",
+                    DEFAULT: "#f69333",
                     dark: "#2C2C2C",
                 },
+                light: "#c3f9ff",
+                mid: "#58b3d0",
                 success: "#4CAF50",  // Green for success
                 warning: "#FFC107",  // Yellow for warning
                 danger: "#E53935",   // Red for danger
