@@ -38,6 +38,11 @@ export default {
                 warning: "#FFC107",  // Yellow for warning
                 danger: "#E53935",   // Red for danger
             },
+            textShadow: {
+                sm: '1px 1px 2px rgba(0, 0, 0, 0.5)',
+                md: '2px 2px 4px rgba(0, 0, 0, 0.5)',
+                lg: '3px 3px 6px rgba(0, 0, 0, 0.5)',
+            },
         },
     },
 
@@ -48,6 +53,19 @@ export default {
                 'ul': { listStyleType: 'disc', paddingLeft: '1.25rem' },
                 'ol': { listStyleType: 'decimal', paddingLeft: '1.25rem' },
                 'li': { marginBottom: '0.5rem' },
+            });
+        },
+        function ({ addUtilities }) {
+            addUtilities({
+              '.text-shadow-sm': {
+                textShadow: '1px 1px 2px rgba(0, 0, 0, 0.5)',
+              },
+              '.text-shadow-md': {
+                textShadow: '2px 2px 4px rgba(0, 0, 0, 0.5)',
+              },
+              '.text-shadow-lg': {
+                textShadow: '3px 3px 6px rgba(0, 0, 0, 0.5)',
+              },
             });
         },
     ],
