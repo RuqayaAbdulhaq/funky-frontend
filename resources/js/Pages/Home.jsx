@@ -1,5 +1,6 @@
 import WebsiteLayout from "@/Layouts/WebsiteLayout";
 import { Hero, Info, Blogs } from "@/Components/Pages/Home";
+import Tag from "@/Components/UI/Tag";
 
 export default function Home(props){
     return(
@@ -7,6 +8,13 @@ export default function Home(props){
             <div className="flex flex-col gap-[64px] w-full px-4 sm:px-6 lg:px-8 xl:px-16 max-w-screen-2xl mx-auto">
                 <Hero/>
                 <Blogs/>
+                <div className="flex gap-2">
+                    <Tag title="Javascript" icon="javascript.svg"/>
+                    <Tag title="Html" icon="html.svg"/>
+                    <Tag title="Css" icon="css.svg"/>
+                    <Tag title="Typescript" icon="typescript.svg"/>
+                    <Tag title="React" icon="react.svg"/>
+                </div>
             </div>
         </WebsiteLayout>
     );
