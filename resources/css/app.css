@@ -15,3 +15,10 @@ code {
     @apply bg-gray-900 text-gray-200 px-2 py-1 rounded-md;
     font-family: "Fira Code", monospace;
 }
+
+.hero{
+    background-image: url("https://www.transparenttextures.com/patterns/bright-squares.png");
+    /* background-image: url("https://www.transparenttextures.com/patterns/gradient-squares.png"); */
+    /* background-image: url("https://www.transparenttextures.com/patterns/white-diamond.png"); */
+/* background-image: url('https://www.transparenttextures.com/patterns/diamond-upholstery.png'); */
+}

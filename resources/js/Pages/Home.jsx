@@ -5,7 +5,7 @@ import Tag from "@/Components/UI/Tag";
 export default function Home(props){
     return(
         <WebsiteLayout>
-            <div className="flex flex-col gap-[64px] w-full px-4 sm:px-6 lg:px-8 xl:px-16 max-w-screen-2xl mx-auto">
+            <div className="flex flex-col gap-[64px] pt-[500px] w-full px-4 sm:px-6 lg:px-8 xl:px-16 max-w-screen-2xl mx-auto">
                 <Hero/>
                 <Blogs/>
                 <div className="flex gap-2">

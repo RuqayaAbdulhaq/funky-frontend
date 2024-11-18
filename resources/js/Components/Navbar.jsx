@@ -57,7 +57,7 @@ export default function Navbar(props) {
     };
 
     return (
-        <header className={`${scrolled ? "bg-white/50 backdrop-blur-xl sticky top-0 left-0" : ""} relative z-[100] w-full px-[20px] flex flex-wrap justify-between items-center py-4`}>
+        <header className={`${scrolled ? "bg-white/50 backdrop-blur-xl " : ""} sticky top-0 left-0 relative z-[100] w-full px-[20px] flex flex-wrap justify-between items-center py-4`}>
             <div className="w-fit flex justify-between items-center">
                 <a href="#" className="text-xl text-white">
                     <Logo2 />
