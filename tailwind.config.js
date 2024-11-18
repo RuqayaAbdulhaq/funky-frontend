@@ -38,6 +38,9 @@ export default {
                 warning: "#FFC107",  // Yellow for warning
                 danger: "#E53935",   // Red for danger
             },
+            boxShadow: {
+                'primary': '-1px 0px 10px 0px rgba(7,146,178,1)', // Custom shadow
+            },
             textShadow: {
                 sm: '1px 1px 2px rgba(0, 0, 0, 0.5)',
                 md: '2px 2px 4px rgba(0, 0, 0, 0.5)',
