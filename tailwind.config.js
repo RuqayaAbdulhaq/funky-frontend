@@ -46,6 +46,9 @@ export default {
                 md: '2px 2px 4px rgba(0, 0, 0, 0.5)',
                 lg: '3px 3px 6px rgba(0, 0, 0, 0.5)',
             },
+            backgroundImage: {
+                'radial-fade': 'radial-gradient(circle, #cff4fd, #F5F5F5 75%)',
+            },
         },
     },
 
