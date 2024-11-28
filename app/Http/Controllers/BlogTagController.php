@@ -8,59 +8,43 @@ use Illuminate\Http\Request;
 
 class BlogTagController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
+    
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'blog_id' => 'required',
+            'tag_id' => 'required',
+        ]);
+        BlogTag::create($validatedData);
+        return response()->json([
+            'status' => 'success',
+            'message' => 'created successfully'
+        ],200);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(BlogTag $BlogTag)
+    public function show($blogId)
     {
-        //
+        $tags = BlogTag::where('blog_id', $blogId);
+        return $tags;
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(BlogTag $BlogTag)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, BlogTag $BlogTag)
-    {
-        //
-    }
-
+    
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(BlogTag $BlogTag)
     {
-        //
+
+        $BlogTag->delete();
+        return response()->json([
+            'status' => 'success',
+            'message' => 'deleted successfully'
+        ],200);
     }
 }
