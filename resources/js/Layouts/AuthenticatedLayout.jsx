@@ -129,7 +129,7 @@ export default function Authenticated({ user, header, children }) {
                 <Sidebar/>
             </div>
 
-            <main>{children}</main>
+            <main className="md:pl-64">{children}</main>
         </div>
     );
 }
