@@ -1,5 +1,5 @@
 import BlogCard from "@/Components/BlogCard";
-import Pagination from "@/Components/Pagination";
+import Pagination from "@/Components/UI/Navigations/Pagination";
 import SearchField from "@/Components/SearchField";
 
 export default function BlogsGrid(props){
@@ -50,7 +50,7 @@ export default function BlogsGrid(props){
                 title={"Blood Effect"} 
                 description={"as a form vaidation"}/>
             </div>
-            <Pagination pages={3}/>
+            {/* <Pagination pages={3}/> */}
         </div>
     )
 }
