@@ -34,6 +34,12 @@ export default {
                 },
                 light: "#c3f9ff",
                 mid: "#58b3d0",
+                accent: {
+                    dark: "#1C2F33",
+                    brown: "#332A1C",
+                    primary: "#B33A07",
+                    secondary: "#B37307"
+                },
                 success: "#4CAF50",  // Green for success
                 warning: "#FFC107",  // Yellow for warning
                 danger: "#E53935",   // Red for danger
