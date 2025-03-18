@@ -55,6 +55,9 @@ export default {
             backgroundImage: {
                 'radial-fade': 'radial-gradient(circle, #cff4fd, #F5F5F5 75%)',
             },
+            minWidth: {
+                "1/2": "50%",
+            },
         },
     },
 
