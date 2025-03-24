@@ -22,7 +22,7 @@ const HeroImage = () => {
         transition={{ repeat: Infinity,repeatType: "reverse", duration: 10, ease: "easeInOut"}}
       >
         <img
-          src="/icons/coding.png"
+          src="/icons/coding-folder.png"
           className=""
         />
       </motion.div>
