@@ -2,15 +2,15 @@ import { motion } from "framer-motion";
 
 const HeroImage = () => {
   return (
-    <div className="hidden lg:block w-full h-auto relative flex items-center justify-center">
+    <div className="hidden lg:block w-full h-auto relative flex items-center justify-center min-w-520">
         <motion.div
         className="absolute w-16 h-16 flex items-center justify-center"
-        animate={{ rotate: 270, x: 200, y: 50 }}
-        initial={{x: 0, y: 100}}
+        animate={{ rotate: 270, x: 150, y: 50 }}
+        initial={{x: 0, y: 150}}
         transition={{ repeat: Infinity,repeatType: "reverse", duration: 10, ease: "easeInOut"}}
       >
         <img
-          src="/icons/react.svg"
+          src="/icons/react.png"
           className=""
         />
       </motion.div>
@@ -22,7 +22,7 @@ const HeroImage = () => {
         transition={{ repeat: Infinity,repeatType: "reverse", duration: 10, ease: "easeInOut"}}
       >
         <img
-          src="/icons/css.svg"
+          src="/icons/coding.png"
           className=""
         />
       </motion.div>
