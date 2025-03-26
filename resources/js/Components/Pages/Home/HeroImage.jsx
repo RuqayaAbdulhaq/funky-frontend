@@ -5,12 +5,12 @@ const HeroImage = () => {
     <div className="hidden lg:block w-full h-auto relative flex items-center justify-center min-w-520">
         <motion.div
         className="absolute w-16 h-16 flex items-center justify-center"
-        animate={{ rotate: 270, x: 150, y: 50 }}
+        animate={{ rotate: 270, x: 150, y: 20 }}
         initial={{x: 0, y: 150}}
         transition={{ repeat: Infinity,repeatType: "reverse", duration: 10, ease: "easeInOut"}}
       >
         <img
-          src="/icons/react.png"
+          src="/icons/react.jpg"
           className=""
         />
       </motion.div>
