@@ -57,6 +57,7 @@ export default {
             },
             minWidth: {
                 "1/2": "50%",
+                "520": "520px"
             },
         },
     },
