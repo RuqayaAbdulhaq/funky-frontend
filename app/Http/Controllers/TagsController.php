@@ -15,7 +15,7 @@ class TagsController extends Controller
     public function index()
     {
         $tags = Tag::paginate(10);
-        return Inertia::render('admin/Tags',['tags' => $tags]); 
+        return Inertia::render('admin/tags',['tags' => $tags]); 
     }
 
     /**
@@ -30,7 +30,7 @@ class TagsController extends Controller
 
         Tag::create($validatedData);
 
-        return redirect()->route('')->with('success', 'Tag created successfully.');
+        return redirect()->route('admin.tags')->with('success', 'Tag created successfully.');
     }
 
     /**

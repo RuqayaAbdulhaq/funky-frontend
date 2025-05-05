@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BlogHeaderController;
 use App\Http\Controllers\BlogBodyController;
 use App\Http\Controllers\FileController;
+use App\Http\Controllers\TagsController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -49,6 +50,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::post('/blog-header', [BlogHeaderController::class, 'store'])->name('create.blog');
         Route::post('/blog-headers/attach-thumbnail', [BlogHeaderController::class, 'attachThumbnail'])->name('attach.thumbnail');
         Route::resource('blog_headers', BlogHeaderController::class);
+        Route::get('/tags', [TagsController::class, 'index'])->name('admin.tags');
+        Route::post('/tags', [TagsController::class, 'store'])->name('create.tag');
     });
 
     // Blog Display (for users)

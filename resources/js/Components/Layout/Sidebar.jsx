@@ -55,6 +55,13 @@ const Sidebar = () => {
                             >
                                 Blogs
                             </NavLink>
+
+                            <NavLink
+                                href={route("admin.tags")}
+                                active={route().current("admin.tags")}
+                            >
+                                Tags
+                            </NavLink>
                         </nav>
                     </motion.div>
                 )}
@@ -76,6 +83,13 @@ const Sidebar = () => {
                         active={route().current("admin.blogs")}
                     >
                         Blogs
+                    </NavLink>
+
+                    <NavLink
+                        href={route("admin.tags")}
+                        active={route().current("admin.tags")}
+                    >
+                        Tags
                     </NavLink>
                 </nav>
             </div>
