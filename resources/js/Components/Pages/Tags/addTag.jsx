@@ -1,7 +1,7 @@
 import PrimaryButton from "@/Components/PrimaryButton";
 import Modal from "@/Components/UI/Modal";
 import { useState } from "react";
-import { AddTagForm } from "./addTagForm";
+import { TagForm } from "./tagForm";
 
 
 export default function AddTag(props) {
@@ -16,10 +16,11 @@ export default function AddTag(props) {
                 }}
                 title="Add Tag"
             >
-                <AddTagForm
+                <TagForm
                     onClose={() => {
                         setShow(false);
                     }}
+                    url={"create.tag"}
                 />
             </Modal>
             <PrimaryButton

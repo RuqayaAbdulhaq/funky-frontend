@@ -52,6 +52,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::resource('blog_headers', BlogHeaderController::class);
         Route::get('/tags', [TagsController::class, 'index'])->name('admin.tags');
         Route::post('/tags', [TagsController::class, 'store'])->name('create.tag');
+        Route::post('/update-tags', [TagsController::class, 'update'])->name('update.tag');
     });
 
     // Blog Display (for users)

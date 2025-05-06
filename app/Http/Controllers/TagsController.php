@@ -43,9 +43,10 @@ class TagsController extends Controller
             'icon' => 'required|string|max:255',
         ]);
 
-        Tag::update($validatedData);
+        $tag = Tag::findOrFail($request['id']);
+        $tag->update($validatedData);
 
-        return redirect()->route('')->with('success', 'Tag updated successfully.');
+        return redirect()->route('admin.tags')->with('success', 'Tag updated successfully.');
     }
 
     /**

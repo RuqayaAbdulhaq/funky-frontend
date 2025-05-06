@@ -4,6 +4,7 @@ import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
 import { Head } from "@inertiajs/react";
 import { useState } from "react";
 import AddTag from "@/Components/Pages/Tags/addTag";
+import EditTag from "@/Components/Pages/Tags/editTag";
 
 export default function AdminTags(props) {
     const [displayEditModal, setDisplayEditModal] = useState(false);
@@ -19,7 +20,7 @@ export default function AdminTags(props) {
                 <Dropdown.Content>
                     <div onClick={() => {
                         setDisplayEditModal(true);
-                        setSelectedRow(row.id);
+                        setSelectedRow(row);
                     }}
                         className="block w-full px-4 py-2 text-start text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100">
                         Edit
@@ -54,6 +55,7 @@ export default function AdminTags(props) {
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div className="bg-white p-4 overflow-hidden shadow-sm sm:rounded-lg">
                         <div className="flex flex-col gap-2 w-full">
+                            <EditTag tag={selectedRow} show={displayEditModal} onClose={() => { setDisplayEditModal(false) }} />
                             <AddTag />
                             <DataTable
                                 data={props.tags?.data}

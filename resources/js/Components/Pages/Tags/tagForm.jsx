@@ -4,17 +4,27 @@ import InputError from "@/Components/UI/InputError";
 import InputLabel from "@/Components/UI/InputLabel";
 import TextInput from "@/Components/UI/TextInput";
 import TextArea from "@/Components/UI/TextArea";
+import { useEffect } from "react";
 
-export const AddTagForm = (props) => {
+export const TagForm = ({ tag, url, options = {}, onClose }) => {
     const { data, setData, post, processing, errors, reset } = useForm({
         name: "",
         icon: "",
+        id: ""
     });
+
+    useEffect(() => {
+        if (tag) {
+            setData(tag);
+        } else {
+            reset("name", "icon");
+        }
+    }, [tag])
 
     const submit = (e) => {
         e.preventDefault();
         try {
-            post(route("create.tag"));
+            post(route(url, options));
             onSucess();
         } catch (error) {
             console.log(error);
@@ -23,7 +33,7 @@ export const AddTagForm = (props) => {
 
     const onSucess = () => {
         reset("name", "icon");
-        props.onClose();
+        onClose();
     };
 
     return (
