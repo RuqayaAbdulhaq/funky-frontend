@@ -53,6 +53,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Route::get('/tags', [TagsController::class, 'index'])->name('admin.tags');
         Route::post('/tags', [TagsController::class, 'store'])->name('create.tag');
         Route::post('/update-tags', [TagsController::class, 'update'])->name('update.tag');
+        Route::delete('tags/{tag}', [TagsController::class, 'destroy'])->name('destroy.tag');
     });
 
     // Blog Display (for users)

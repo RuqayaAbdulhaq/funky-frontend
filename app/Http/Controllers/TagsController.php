@@ -56,6 +56,6 @@ class TagsController extends Controller
     {
         $Tag->delete();
 
-        return redirect()->route("")->with("sucess","Tag deleted successfully");
+        return redirect()->route('admin.tags')->with("sucess","Tag deleted successfully");
     }
 }

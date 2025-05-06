@@ -5,10 +5,23 @@ import { Head } from "@inertiajs/react";
 import { useState } from "react";
 import AddTag from "@/Components/Pages/Tags/addTag";
 import EditTag from "@/Components/Pages/Tags/editTag";
+import { router } from '@inertiajs/react';
+
 
 export default function AdminTags(props) {
     const [displayEditModal, setDisplayEditModal] = useState(false);
     const [selectedRow, setSelectedRow] = useState("");
+
+    const onDelete = (tag) => {
+        if (confirm(`Are you sure you want to delete the tag "${tag.name}"?`)) {
+            router.delete(route('destroy.tag', tag.id), {
+                preserveScroll: true,
+                onSuccess: () => {
+                    console.log('Tag deleted successfully');
+                },
+            });
+        }
+    };
 
     const actionsList = (props) => {
         const { row } = props;
@@ -25,7 +38,7 @@ export default function AdminTags(props) {
                         className="block w-full px-4 py-2 text-start text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100">
                         Edit
                     </div>
-                    <div onClick={() => { }}
+                    <div onClick={() => { onDelete(row) }}
                         className="block w-full px-4 py-2 text-start text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100">
                         Delete
                     </div>
